@@ -4,7 +4,7 @@ This repository contains the code for a workshop that demonstrates how to use Py
 
 ## Workshop Overview for Session 1
 
-**All necessary code for Session 1 can be found in the session1 directory**
+All necessary code for Session 1 can be found in [Session 1 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session1)
 
 The technical lesson covers the following concepts:
 
