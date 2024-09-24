@@ -10,6 +10,12 @@ The technical lesson covers the following concepts:
 2. **Functional Namespace**: Allows students to define custom data and track real-time mouse movements.
 3. **Informative Namespace**: Aggregates data to show connected students and real-time activity.
 
+The technical lesson is broken into three steps.  The code for each step is located in separate python files in the repository.  Students will create a new python project using PyCharm (or VSCode) called 'unsworkshop'.  
+
+1. Create requirements.txt (pre-requisites will be listed here)
+2. Create main.py (step code will go here)
+3. In the terminal, run pip install -r requirements.txt
+
 ### Prerequisites For Session 1
 
 Ensure you have the following software installed:
