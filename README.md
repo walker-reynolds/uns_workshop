@@ -58,18 +58,41 @@ The student will publish to a unique root topic:
 example: uns/usa/tx/dallas/wdr
 
 Namespaces will be published under subtopics like:
-uns/usa/tx/dallas/wdr/descriptive 
-uns/usa/tx/dallas/wdr/functional 
-uns/usa/tx/dallas/wdr/informative
+- uns/usa/tx/dallas/wdr/descriptive 
+- uns/usa/tx/dallas/wdr/functional 
+- uns/usa/tx/dallas/wdr/informative
 
 ---
 
-### Step 2: Dynamic Functional Namespace
+## Step 2: Dynamic Functional Namespace with Mouse Tracking
 
-This step adds the following functionality:
+In this step, we extend the functionality from Step 1 by introducing **mouse tracking**. The student will:
 
-- Track real-time mouse movements using Python.
-- Update and publish the functional namespace dynamically with the timestamp of the last mouse movement.
+- Use Python's `pynput` library to track real-time mouse movements.
+- Dynamically update the **functional namespace** to include the timestamp of the last mouse movement.
+- Continuously publish the updated functional namespace every 5 seconds to the MQTT broker.
+
+### Key Features:
+- **Mouse Tracking**: Every time the mouse is moved, the timestamp of the movement is recorded.
+- **Dynamic Functional Namespace**: The functional namespace now includes the `last_mouse_movement` timestamp, which updates in real-time.
+- **Continuous Publishing**: The functional namespace is re-published every 5 seconds, reflecting the most recent mouse movement.
+  
+### MQTT Topic Structure:
+The student will continue to publish to a unique root topic:
+uns/usa/tx/dallas/wdr
+
+Namespaces will be published under subtopics like:
+- uns/usa/tx/dallas/wdr/descriptive
+- uns/usa/tx/dallas/wdr/functional
+- uns/usa/tx/dallas/wdr/informative
+
+
+### How It Works:
+1. **Descriptive Namespace**: Collects system and user information, similar to Step 1.
+2. **Functional Namespace**: Updated dynamically with the last mouse movement timestamp.
+3. **Informative Namespace**: A placeholder for system messages, unchanged from Step 1.
+
+In this step, the script continues to handle MQTT communication and monitor mouse movements in real-time. Every 5 seconds, the functional namespace is updated and published, showing the latest interaction.
 
 ---
 
