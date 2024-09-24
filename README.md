@@ -2,15 +2,15 @@
 
 This repository contains the code for a workshop that demonstrates how to use Python and MQTT to create a unified namespace. The workshop teaches how to collect system information, track real-time activity, and publish data to an MQTT broker. The project is divided into three steps.
 
-## Workshop Overview
+## Workshop Overview for Session 1
 
-The workshop covers the following concepts:
+The technical lesson covers the following concepts:
 
 1. **Descriptive Namespace**: Collects system, user, and location information.
 2. **Functional Namespace**: Allows students to define custom data and track real-time mouse movements.
 3. **Informative Namespace**: Aggregates data to show connected students and real-time activity.
 
-### Prerequisites
+### Prerequisites For Session 1
 
 Ensure you have the following software installed:
 
@@ -19,7 +19,7 @@ Ensure you have the following software installed:
 - **PyCharm Community Edition**: A free Python IDE for writing and managing Python code.
 - **MQTT Explorer**: A GUI tool for monitoring and debugging MQTT traffic, useful for observing topics and messages published by the students.
 
-### Steps in the Workshop
+### Steps in the Workshop Session 1
 
 This workshop consists of three steps:
 
