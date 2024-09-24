@@ -14,7 +14,7 @@ The technical lesson is broken into three steps.  The code for each step is loca
 
 1. Create requirements.txt (pre-requisites will be listed here)
 2. Create main.py (step code will go here)
-3. In the terminal, run pip install -r requirements.txt
+3. In the terminal, run ```pip install -r requirements.txt```
 
 ### Prerequisites For Session 1
 
