@@ -12,11 +12,12 @@ The workshop covers the following concepts:
 
 ### Prerequisites
 
-Ensure you have the following installed:
+Ensure you have the following software installed:
 
-- **Python 3.x**
-- **Pip** for installing Python packages
-- **An MQTT Broker** to connect and publish data
+- **Python 3.x**: The programming language used to write and execute the scripts.
+- **Pip**: The package installer for Python, used to install required libraries.
+- **PyCharm Community Edition**: A free Python IDE for writing and managing Python code.
+- **MQTT Explorer**: A GUI tool for monitoring and debugging MQTT traffic, useful for observing topics and messages published by the students.
 
 ### Steps in the Workshop
 
@@ -53,5 +54,33 @@ In the final step, students will:
 
 ---
 
+### Software Setup Instructions
 
+1. **Python 3.x**: Download and install Python 3 from the [official website](https://www.python.org/downloads/). Ensure `pip` is also installed with Python.
+
+2. **PyCharm Community Edition**: Download and install PyCharm from the [JetBrains website](https://www.jetbrains.com/pycharm/download/). This will be used as the integrated development environment (IDE) for writing, running, and debugging Python code.
+
+3. **MQTT Explorer**: Download and install MQTT Explorer from the [official site](https://mqtt-explorer.com/). This will help you visualize the topics and messages exchanged during the workshop.
+
+---
+
+### MQTT Topics
+
+Each student will publish to a unique topic using the following format:
+
+uns/{country_code}/{state_code}/{city}/{student_initials}/
+For example: uns/usa/tx/dallas/wdr
+
+
+Namespaces will be published under subtopics like `descriptive`, `functional`, and `informative`.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+This workshop is designed to teach students how to use Python and MQTT to create real-time, distributed systems that collect and share data in a unified namespace.
 
