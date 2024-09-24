@@ -36,13 +36,31 @@ This workshop consists of three steps:
 
 ---
 
-### Step 1: Basic MQTT Setup
+## Step 1: Basic MQTT Setup
 
-In this step, students will:
+In this step, we set up a basic MQTT client using Python and `paho-mqtt`. The student will:
 
-- Set up an MQTT client in Python.
-- Create descriptive, functional, and informative namespaces.
-- Publish these namespaces to an MQTT broker.
+- Create and publish three types of namespaces:
+  - **Descriptive Namespace**: Collects system, user, and location information.
+  - **Functional Namespace**: Contains user-defined data, such as process status and a timestamp.
+  - **Informative Namespace**: Holds general system information such as status messages and uptime.
+  
+- Connect to the MQTT broker using the provided credentials.
+- Publish the descriptive, functional, and informative namespaces to the student's unique MQTT topic.
+- Subscribe and listen for any incoming messages on the specified topic.
+
+**Key Features:**
+- Generates and publishes information about the user's system and custom data to a topic structure based on `uns/{country_code}/{state_code}/{city}/{initials}`.
+- Subscribes to the topic and processes any incoming messages.
+
+**MQTT Topic Structure:**
+The student will publish to a unique root topic:
+example: uns/usa/tx/dallas/wdr
+
+Namespaces will be published under subtopics like:
+uns/usa/tx/dallas/wdr/descriptive 
+uns/usa/tx/dallas/wdr/functional 
+uns/usa/tx/dallas/wdr/informative
 
 ---
 
