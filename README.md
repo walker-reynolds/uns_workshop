@@ -15,6 +15,9 @@ The technical lesson is broken into three steps.  The code for each step is loca
 1. Create requirements.txt (pre-requisites will be listed here)
 2. Create main.py (step code will go here)
 3. In the terminal, run ```pip install -r requirements.txt```
+4. Connect to MQTT Broker using **MQTT Explorer**
+5. For each step, update the code in main.py with the corresponding code in step1.py, step2.py and step3.py
+6. Each step requires configuration in the code
 
 ### Prerequisites For Session 1
 
