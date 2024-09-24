@@ -4,6 +4,8 @@ This repository contains the code for a workshop that demonstrates how to use Py
 
 ## Workshop Overview for Session 1
 
+**All necessary code for Session 1 can be found in the session1 directory**
+
 The technical lesson covers the following concepts:
 
 1. **Descriptive Namespace**: Collects system, user, and location information.
