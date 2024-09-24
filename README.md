@@ -53,7 +53,5 @@ In the final step, students will:
 
 ---
 
-### MQTT Topics
 
-Each student will publish to a unique topic using the following format:
 
