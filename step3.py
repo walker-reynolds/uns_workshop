@@ -126,7 +126,7 @@ if __name__ == "__main__":
     print(f"Generated Functional Namespace: {functional_namespace}")
 
     # MQTT client setup
-    mqtt_broker = "144.202.65.194"
+    mqtt_broker = "broker_address"
     mqtt_port = 1883  # Use 8883 for TLS
 
     client = mqtt.Client()
