@@ -96,13 +96,35 @@ In this step, the script continues to handle MQTT communication and monitor mous
 
 ---
 
-### Step 3: Managing Connected and Active Students
+## Step 3: Managing Connected and Active Students
 
-In the final step, students will:
+In this step, we expand on the previous functionality by tracking multiple students in real-time. The student will:
 
-- Track connected students by monitoring their functional namespaces.
-- Count how many students have moved their mouse within a given time window.
-- Publish aggregated data, including the number of connected and active students, in the informative namespace.
+- Track the total number of connected students.
+- Monitor when students move their mouse to determine who is active within a specific time window.
+- Publish the number of connected students and active students (those who have moved their mouse recently) to the MQTT broker.
+
+### Key Features:
+- **Connected Students**: Tracks all students connected to the broker and subscribing to the root topic.
+- **Active Students**: Counts how many students have moved their mouse within the last 5 seconds and publishes that information in the informative namespace.
+- **Continuous Updates**: The functional namespace is updated and published every 5 seconds to reflect mouse movement. The informative namespace is also updated to show the total number of connected and active students.
+
+### MQTT Topic Structure:
+The student will continue to publish to a unique root topic:
+uns/usa/tx/dallas/wdr
+
+Namespaces will be published under subtopics like:
+- uns/usa/tx/dallas/wdr/descriptive
+- uns/usa/tx/dallas/wdr/functional
+- uns/usa/tx/dallas/wdr/informative
+
+
+### How It Works:
+1. **Descriptive Namespace**: Collects system and user information, similar to Steps 1 and 2.
+2. **Functional Namespace**: Dynamically updated based on the last mouse movement.
+3. **Informative Namespace**: Publishes aggregated data, including the total number of connected students and the number of active students who moved their mouse in the last 5 seconds.
+
+In this final step, students are introduced to tracking multiple participants' activity, aggregating this data, and publishing it in real-time.
 
 ---
 
