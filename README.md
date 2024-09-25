@@ -7,6 +7,13 @@ This repository contains the code for a workshop that demonstrates how to use Ig
 <img width="1305" alt="image" src="https://github.com/user-attachments/assets/6e6ac91e-ebd0-4337-9c40-f1cebd47b781">
 
 ---
+## Key Concepts
+
+1. **Descriptive Namespace**: A descriptive namespace in the context of a Unified Namespace (UNS) is a structured collection of mostly static data and information that describes an asset, system or function. Examples include an asset's name, ID, location, OEM (Original Equipment Manufacturer), and operational in service date. This namespace provides essential identifying information that remains relatively unchanged and is used for system context and reference.
+2. **Functional Namespace**: A functional namespace in the context of a Unified Namespace (UNS) is used to model the functions of a business, process, or system. It represents the operational aspects and actions that the system performs. Examples of functional namespaces include OEE (Overall Equipment Effectiveness), Production Line, Change-over, Edge Data Ingress, and Roll Consumption. These namespaces capture real-time functional data, from various producers, and convert the data for a business function, enabling the monitoring and management of key business processes and system performance.
+3. **Informative Namespace**: An informative namespace in the context of a Unified Namespace (UNS) is used to model and house data specifically for consumption by a consumer, such as an operator, dashboard, or system endpoint. It is designed to present aggregated, actionable information derived from various sources. Common examples of informative namespaces include Dashboard, Transaction, and Endpoint, where data is structured for easy interpretation and decision-making by users or systems.
+
+---
 ## Workshop Overview for Session 1
 
 All necessary code for Session 1 can be found in [Session 1 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session1)
