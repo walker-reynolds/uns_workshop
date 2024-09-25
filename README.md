@@ -35,11 +35,10 @@ Ensure you have the following software installed:
 - **PyCharm Community Edition**: A free Python IDE for writing and managing Python code.
 - **MQTT Explorer**: A GUI tool for monitoring and debugging MQTT traffic, useful for observing topics and messages published by the students.
 
-### Steps in the Workshop Session 1
+# Steps in the Workshop Session 1
 
 This workshop consists of three steps:
 
----
 
 ## Step 1: Basic MQTT Setup
 
@@ -67,7 +66,6 @@ Namespaces will be published under subtopics like:
 - uns/usa/tx/dallas/wdr/functional 
 - uns/usa/tx/dallas/wdr/informative
 
----
 
 ## Step 2: Dynamic Functional Namespace with Mouse Tracking
 
@@ -155,7 +153,7 @@ Namespaces will be published under subtopics like `descriptive`, `functional`, a
 
 ---
 
-## Workshop Overview for Session 2
+# Workshop Overview for Session 2
 
 All necessary code and configuration for Session 2 can be found in [Session 2 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session2).
 
@@ -167,7 +165,7 @@ In this session, students will be working with **Ignition** to build a **Unified
 
 The lesson is broken into several steps. Each step involves creating memory tags and configuring them in **Ignition**. Students will use the provided JSON file to import the necessary tags and build the UNS.
 
-### Steps:
+## Steps:
 1. **Install and Set Up Ignition**:
    - Students must have **Ignition**, **MQTT Transmission Module**, and **MQTT Engine Module** installed on their machines.
    - Links to download the necessary software are provided below.
@@ -204,7 +202,6 @@ Once the required software and modules are installed, follow the steps in the wo
 The result of the local UNS should look something like this:
 
 <img width="1499" alt="image" src="https://github.com/user-attachments/assets/91976494-6d42-4b23-be8a-f89f0de3b11b">
-
 
 
 ---
