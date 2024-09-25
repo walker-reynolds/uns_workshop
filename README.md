@@ -1,3 +1,6 @@
+# This repository and readme contains code and instructions for 4.0 Solutions UNS Workshop for September of 2024.![image](https://github.com/user-attachments/assets/f9fc94b1-6458-40af-8ec7-38746925ea90)
+
+
 # Unified Namespace: UNS with MQTT Workshop
 
 This repository contains the code for a workshop that demonstrates how to use Ignition, Python, Google Cloud Services and MQTT to create a unified namespace. The workshop teaches how to collect system information, track real-time activity, and publish data to an MQTT broker. The workshop is broken into three sessions and each session's project is divided into three steps.
