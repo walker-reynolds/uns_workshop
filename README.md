@@ -1,5 +1,4 @@
-# This repository and readme contains code and instructions for 4.0 Solutions UNS Workshop for September of 2024.![image](https://github.com/user-attachments/assets/f9fc94b1-6458-40af-8ec7-38746925ea90)
-
+# This repository and readme contains code and instructions for 4.0 Solutions UNS Workshop for September of 2024.
 
 # Unified Namespace: UNS with MQTT Workshop
 
