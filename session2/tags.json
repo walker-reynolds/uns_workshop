@@ -1,0 +1,541 @@
+{
+  "name": "Enterprise",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "Dallas",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "Press",
+          "tagType": "Folder",
+          "tags": [
+            {
+              "name": "Press 103",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "Edge",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Waste",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Infeed",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "ShopFloor",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "WorkOrder",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "JobDS",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "JobID",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Outfeed",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "State",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Asset",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "readOnly": false,
+                      "dataType": "String",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "AssetID",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "String",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "OEM",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "String",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Name",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "String",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Model",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "readOnly": false,
+                      "dataType": "String",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "InService",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Line",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "valueSource": "expr",
+                      "expression": "{[.]../Edge/State}",
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "State",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": "",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Availability",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]Availability}*{[.]Performance}*{[.]Quality},\r\n0\r\n)",
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "OEE",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Quality",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Performance",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "{[.]../Edge/Outfeed}",
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Outfeed",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "{[.]../Edge/Infeed}",
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Infeed",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "{[.]../Edge/Waste}",
+                      "readOnly": false,
+                      "dataType": "Int4",
+                      "writePermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "name": "Waste",
+                      "readPermissions": {
+                        "type": "AllOf",
+                        "securityLevels": []
+                      },
+                      "value": 0.0,
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Dashboard",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "Asset",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Asset/Model}",
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Model",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Asset/Name}",
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Name",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Asset/OEM}",
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "OEM",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Line/OEE/Quality}",
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Quality",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Line/OEE/Availability}",
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Availability",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Line/OEE/Performance}",
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "Performance",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Line/OEE/OEE}",
+                          "readOnly": false,
+                          "dataType": "Float4",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "OEE",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": 0.0,
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Job",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Edge/ShopFloor/WorkOrder}",
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "WorkOrder",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "{[.]../../Edge/ShopFloor/JobID}",
+                          "readOnly": false,
+                          "dataType": "String",
+                          "writePermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "name": "JobID",
+                          "readPermissions": {
+                            "type": "AllOf",
+                            "securityLevels": []
+                          },
+                          "value": "",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
