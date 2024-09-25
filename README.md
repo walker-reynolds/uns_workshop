@@ -46,7 +46,7 @@ Ensure you have the following software installed:
 - **PyCharm Community Edition**: A free Python IDE for writing and managing Python code.
 - **MQTT Explorer**: A GUI tool for monitoring and debugging MQTT traffic, useful for observing topics and messages published by the students.
 
-# Steps in the Workshop Session 1
+# Steps for Workshop Session 1
 
 ## Step 1: Basic MQTT Setup
 
