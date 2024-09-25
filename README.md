@@ -39,7 +39,6 @@ Ensure you have the following software installed:
 
 This workshop consists of three steps:
 
-
 ## Step 1: Basic MQTT Setup
 
 In this step, we set up a basic MQTT client using Python and `paho-mqtt`. The student will:
