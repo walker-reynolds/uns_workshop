@@ -65,7 +65,6 @@ Namespaces will be published under subtopics like:
 - uns/usa/tx/dallas/wdr/functional 
 - uns/usa/tx/dallas/wdr/informative
 
-
 ## Step 2: Dynamic Functional Namespace with Mouse Tracking
 
 In this step, we extend the functionality from Step 1 by introducing **mouse tracking**. The student will:
@@ -96,8 +95,6 @@ Namespaces will be published under subtopics like:
 
 In this step, the script continues to handle MQTT communication and monitor mouse movements in real-time. Every 5 seconds, the functional namespace is updated and published, showing the latest interaction.
 
----
-
 ## Step 3: Managing Connected and Active Students
 
 In this step, we expand on the previous functionality by tracking multiple students in real-time. The student will:
@@ -120,7 +117,6 @@ Namespaces will be published under subtopics like:
 - uns/usa/tx/dallas/wdr/functional
 - uns/usa/tx/dallas/wdr/informative
 
-
 ### How It Works:
 1. **Descriptive Namespace**: Collects system and user information, similar to Steps 1 and 2.
 2. **Functional Namespace**: Dynamically updated based on the last mouse movement.
@@ -137,8 +133,6 @@ In this final step, students are introduced to tracking multiple participants' a
 2. **PyCharm Community Edition**: Download and install PyCharm from the [JetBrains website](https://www.jetbrains.com/pycharm/download/). This will be used as the integrated development environment (IDE) for writing, running, and debugging Python code.
 
 3. **MQTT Explorer**: Download and install MQTT Explorer from the [official site](https://mqtt-explorer.com/). This will help you visualize the topics and messages exchanged during the workshop.
-
----
 
 ### MQTT Topics
 
