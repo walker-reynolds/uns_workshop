@@ -13,7 +13,9 @@ This repository contains the code for a workshop that demonstrates how to use Ig
 2. **Functional Namespace**: A functional namespace in the context of a Unified Namespace (UNS) is used to model the functions of a business, process, or system. It represents the operational aspects and actions that the system performs. Examples of functional namespaces include OEE (Overall Equipment Effectiveness), Production Line, Change-over, Edge Data Ingress, and Roll Consumption. These namespaces capture real-time functional data, from various producers, and convert the data for a business function, enabling the monitoring and management of key business processes and system performance.
 3. **Informative Namespace**: An informative namespace in the context of a Unified Namespace (UNS) is used to model and house data specifically for consumption by a consumer, such as an operator, dashboard, or system endpoint. It is designed to present aggregated, actionable information derived from various sources. Common examples of informative namespaces include Dashboard, Transaction, and Endpoint, where data is structured for easy interpretation and decision-making by users or systems.
 
-<img width="462" alt="image" src="https://github.com/user-attachments/assets/a77bfedd-a72d-48f1-bd48-2298fc548db2">
+<div align="center">
+  <img width="462" alt="image" src="https://github.com/user-attachments/assets/a77bfedd-a72d-48f1-bd48-2298fc548db2">
+</div>
 
 ---
 ## Workshop Overview for Session 1
