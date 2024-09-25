@@ -152,6 +152,55 @@ Namespaces will be published under subtopics like `descriptive`, `functional`, a
 
 ---
 
+## Workshop Overview for Session 2
+
+All necessary code and configuration for Session 2 can be found in [Session 2 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session2).
+
+In this session, students will be working with **Ignition** to build a **Unified Namespace (UNS)**, based on a real factory. The technical lesson covers the following concepts:
+
+1. **Descriptive Namespace**: Captures information about assets such as name, AssetID, and operational status.
+2. **Functional Namespace**: Tracks real-time operational data, such as infeed, outfeed, state, and waste for edge and line-level metrics.
+3. **Informative Namespace**: Aggregates metrics like Overall Equipment Effectiveness (OEE) and other performance indicators for dashboards.
+
+The lesson is broken into several steps. Each step involves creating memory tags and configuring them in **Ignition**. Students will use the provided JSON file to import the necessary tags and build the UNS.
+
+### Steps:
+1. **Install and Set Up Ignition**:
+   - Students must have **Ignition**, **MQTT Transmission Module**, and **MQTT Engine Module** installed on their machines.
+   - Links to download the necessary software are provided below.
+   
+2. **Import Tags in Ignition**:
+   - Use the provided JSON file to import the namespace tags.
+   - Follow the structure to create folders for **Enterprise**, **Asset**, **Edge**, **Line**, and **OEE**.
+
+3. **Configure MQTT Transmission**:
+   - Configure Ignition to publish data from the UNS to the MQTT broker using the **MQTT Transmission Module**.
+
+4. **Monitor and Verify Data**:
+   - Use **MQTT Explorer** to monitor and debug the data being published to the broker.
+   - Ensure that the descriptive, functional, and informative namespaces are publishing correctly.
+
+### Prerequisites For Session 2
+
+Ensure you have the following software installed before the session:
+
+- **Ignition**: The platform used to build and manage your UNS. Make sure you have installed the following modules:
+  - **MQTT Transmission Module**: Required for publishing Ignition tags to the MQTT broker.
+  - **MQTT Engine Module**: Required for subscribing to MQTT topics within Ignition.
+
+### Required Downloads
+
+Please download and install the necessary modules for Ignition from the following links:
+
+- [MQTT Transmission Module](https://unsworkshop.s3.us-east-2.amazonaws.com/MQTT-Transmission-signed.modl)
+- [MQTT Engine Module](https://unsworkshop.s3.us-east-2.amazonaws.com/MQTT-Engine-signed.modl)
+- [MQTT Transmission Module](https://unsworkshop.s3.us-east-2.amazonaws.com/MQTT-Transmission-signed.modl) *(duplicate link for verification purposes)*
+
+Once the required software and modules are installed, follow the steps in the workshop to create and manage your Unified Namespace in Ignition.
+
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
