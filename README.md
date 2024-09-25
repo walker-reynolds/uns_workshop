@@ -2,7 +2,7 @@
 
 # Unified Namespace: UNS with MQTT Workshop
 
-This repository contains the code for a workshop that demonstrates how to use Ignition, Python, Google Cloud Services and MQTT to create a unified namespace. The workshop teaches how to collect system information, track real-time activity, and publish data to an MQTT broker. The workshop is broken into three sessions and each session's project is divided into three steps.
+This repository contains the code for a workshop that demonstrates how to use Ignition, Python, Google Cloud Services and MQTT to create a unified namespace. The workshop teaches how to collect system information, industrial edge and business data, track real-time activity, and publish/consume data and information to/from an MQTT broker. The workshop is broken into three sessions and each session's project is divided into three steps.
 
 ## Workshop Overview for Session 1
 
