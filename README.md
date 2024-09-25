@@ -4,6 +4,9 @@
 
 This repository contains the code for a workshop that demonstrates how to use Ignition, Python, Google Cloud Services and MQTT to create a unified namespace. The workshop teaches how to collect system information, industrial edge and business data, track real-time activity, and publish/consume data and information to/from an MQTT broker. The workshop is broken into three sessions and each session's project is divided into three steps.
 
+<img width="1305" alt="image" src="https://github.com/user-attachments/assets/6e6ac91e-ebd0-4337-9c40-f1cebd47b781">
+
+---
 ## Workshop Overview for Session 1
 
 All necessary code for Session 1 can be found in [Session 1 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session1)
