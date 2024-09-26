@@ -1,0 +1,560 @@
+{
+  "name": "Enterprise",
+  "tagType": "Folder",
+  "tags": [
+    {
+      "name": "Dallas",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "BigQuery",
+          "tagType": "Folder",
+          "tags": [
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "EndPoint_Press 103",
+              "value": "{\"Dashboard\": {\"Availability\": 0.6000000238418579, \"OEE\": 0.2939999997615814, \"Quality\": 0.699999988079071, \"Performance\": 0.699999988079071}, \"Line\": {\"Outfeed\": 2881, \"Infeed\": 2942, \"Waste\": 61, \"State\": 1}, \"Asset\": {\"Name\": \"Press 103\", \"OEM\": \"Comexi\", \"Model\": \"F-Plus\", \"AssetID\": \"18\"}, \"Edge\": {\"Outfeed\": 2881, \"Infeed\": 2942, \"Waste\": 61, \"State\": 1}, \"timestamp\": \"Thu Sep 26 10:54:24 COT 2024\"}",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "EndPoint_Press 104",
+              "value": "{\"Dashboard\": {\"Availability\": 0.6100000143051147, \"OEE\": 0.2815150022506714, \"Quality\": 0.6499999761581421, \"Performance\": 0.7099999785423279}, \"Line\": {\"Outfeed\": 2865, \"Infeed\": 2916, \"Waste\": 51, \"State\": 1}, \"Asset\": {\"Name\": \"Press 104\", \"OEM\": \"Comexi\", \"Model\": \"F-Plus\", \"AssetID\": \"19\"}, \"Edge\": {\"Outfeed\": 2865, \"Infeed\": 2916, \"Waste\": 51, \"State\": 1}, \"timestamp\": \"Thu Sep 26 10:54:24 COT 2024\"}",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Press",
+          "tagType": "Folder",
+          "tags": [
+            {
+              "name": "Press 103",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "Asset",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "Name",
+                      "value": "Press 103",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "AssetID",
+                      "value": "18",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "Model",
+                      "value": "F-Plus",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "OEM",
+                      "value": "Comexi",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "InService",
+                      "value": "2024-09-25",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Edge",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "ShopFloor",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "memory",
+                          "dataType": "String",
+                          "name": "JobDS",
+                          "value": "0",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "name": "JobID",
+                          "value": 1,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "String",
+                          "name": "WorkOrder",
+                          "value": "09252024-1",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "Infeed",
+                      "value": 3090,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "State",
+                      "value": 1,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "Outfeed",
+                      "value": 3028,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "Waste",
+                      "value": 62,
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Dashboard",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/OEE},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "OEE",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Quality},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Quality",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Performance},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Performance",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Availability},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Availability",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Asset",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/Name},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "Name",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/Model},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "Model",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/OEM},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "OEM",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Job",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Edge/ShopFloor/WorkOrder},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "WorkOrder",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Edge/ShopFloor/JobID},\r\n-1\r\n)",
+                          "name": "JobID",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Line",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Infeed},\r\n-1\r\n)",
+                      "name": "Infeed",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/State},\r\n-1\r\n)",
+                      "name": "State",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Outfeed},\r\n-1\r\n)",
+                      "name": "Outfeed",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Waste},\r\n-1\r\n)",
+                      "name": "Waste",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]Availability}*{[.]Quality}*{[.]Performance},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "OEE",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Availability",
+                          "value": 0.63,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Quality",
+                          "value": 0.67,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Performance",
+                          "value": 0.7,
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "valueSource": "expr",
+              "eventScripts": [
+                {
+                  "eventid": "valueChanged",
+                  "script": "\t# Import required Ignition libraries\n\timport random as py_random  # Avoid naming conflict by aliasing random\n\timport system.tag\n\timport system.util\n\t\n\t# Set the wasteSetpoint as a percentage likelihood (e.g., 0.02 \u003d 2% chance)\n\twasteSetpoint \u003d 0.02\n\t\n\t# Starting point in the tag structure (parent path)\n\tparentPath \u003d \"[default]Enterprise/Dallas/Press\"\n\t\n\t# Function to simulate tag values for a specific Edge namespace\n\tdef simulate_edge_values(edgePath):\n\t    # Convert edgePath to string in case it is not\n\t    edgePathStr \u003d str(edgePath)\n\t\n\t    # Paths to the tags under the Edge namespace\n\t    infeedPath \u003d edgePathStr + \"/Infeed\"\n\t    outfeedPath \u003d edgePathStr + \"/Outfeed\"\n\t    statePath \u003d edgePathStr + \"/State\"\n\t    wastePath \u003d edgePathStr + \"/Waste\"\n\t\n\t    # Check if the tags exist\n\t    tagPaths \u003d [infeedPath, outfeedPath, statePath, wastePath]\n\t    tagResults \u003d system.tag.readBlocking(tagPaths)\n\t\n\t    # Verify that all tags are valid\n\t    if all([tag.quality.isGood() for tag in tagResults]):\n\t        infeedValue \u003d tagResults[0].value\n\t        outfeedValue \u003d tagResults[1].value\n\t        stateValue \u003d tagResults[2].value\n\t        wasteValue \u003d tagResults[3].value\n\t\n\t        # Simulate State: 90% chance of being 1 (machine running), 10% chance of being 0 (machine stopped)\n\t        stateValue \u003d 1 if py_random.random() \u003c\u003d 0.9 else 0\n\t\n\t        # Only increment counters if the machine is running (State \u003d 1)\n\t        if stateValue \u003d\u003d 1:\n\t            # Increment Infeed\n\t            infeedValue +\u003d 1\n\t\n\t            # Determine if Waste should increment based on the wasteSetpoint\n\t            if py_random.random() \u003c\u003d wasteSetpoint:\n\t                # Increment Waste, Outfeed will not increment\n\t                wasteValue +\u003d 1\n\t            else:\n\t                # Increment Outfeed (but Outfeed cannot exceed Infeed)\n\t                outfeedValue \u003d min(infeedValue, outfeedValue + 1)\n\t\n\t        # Write the new values back to the tags\n\t        system.tag.writeBlocking([\n\t            infeedPath,\n\t            outfeedPath,\n\t            statePath,\n\t            wastePath\n\t        ], [\n\t            infeedValue,\n\t            outfeedValue,\n\t            stateValue,\n\t            wasteValue\n\t        ])\n\t\n\t# Function to recursively browse tags starting from a given path and find Edge namespaces\n\tdef browse_for_edge_namespaces(path):\n\t    # Get the direct children of the current path\n\t    results \u003d system.tag.browse(path)\n\t\n\t    # Iterate through the results to find folders or Edge namespaces\n\t    for result in results.getResults():\n\t        # If the result is a folder, browse inside it recursively\n\t        if result[\u0027hasChildren\u0027]:\n\t            browse_for_edge_namespaces(result[\u0027fullPath\u0027])\n\t        \n\t        # If an \u0027Edge\u0027 folder is found, run the simulation for this namespace\n\t        if result[\u0027name\u0027] \u003d\u003d \u0027Edge\u0027:\n\t            simulate_edge_values(result[\u0027fullPath\u0027])\n\t\n\t# Function to simulate OEE values and write to tags\n\tdef simulate_oee_values(oeePath):\n\t    # Convert oeePath to string in case it is not\n\t    oeePathStr \u003d str(oeePath)\n\t\n\t    # Paths to the OEE tags under the OEE namespace\n\t    availabilityPath \u003d oeePathStr + \"/Availability\"\n\t    qualityPath \u003d oeePathStr + \"/Quality\"\n\t    performancePath \u003d oeePathStr + \"/Performance\"\n\t\n\t    # Generate random OEE values between 0.60 and 0.72 (rounded to 2 decimal places)\n\t    availabilityValue \u003d round(py_random.uniform(0.60, 0.72), 2)\n\t    qualityValue \u003d round(py_random.uniform(0.60, 0.72), 2)\n\t    performanceValue \u003d round(py_random.uniform(0.60, 0.72), 2)\n\t\n\t    # Write the values back to the tags\n\t    system.tag.writeBlocking([availabilityPath, qualityPath, performancePath],\n\t                             [availabilityValue, qualityValue, performanceValue])\n\t\n\t# Function to recursively browse tags starting from a given path and find OEE namespaces\n\tdef browse_for_oee_namespaces(path):\n\t    # Get the direct children of the current path\n\t    results \u003d system.tag.browse(path)\n\t\n\t    # Iterate through the results to find folders or OEE namespaces\n\t    for result in results.getResults():\n\t        # If the result is a folder, browse inside it recursively\n\t        if result[\u0027hasChildren\u0027]:\n\t            browse_for_oee_namespaces(result[\u0027fullPath\u0027])\n\t\n\t        # If an \u0027OEE\u0027 folder is found, run the simulation for this namespace\n\t        if result[\u0027name\u0027] \u003d\u003d \u0027OEE\u0027:\n\t            simulate_oee_values(result[\u0027fullPath\u0027])\n\t\n\t# Browse for all \u0027Edge\u0027 namespaces under the specified parentPath\n\tbrowse_for_edge_namespaces(parentPath)\n\t\n\t# Browse for all \u0027OEE\u0027 namespaces under the specified parentPath\n\tbrowse_for_oee_namespaces(parentPath)"
+                }
+              ],
+              "expression": "now()",
+              "dataType": "DateTime",
+              "name": "Now",
+              "formatString": "yyyy-MM-dd h:mm:ss aa",
+              "executionMode": "FixedRate",
+              "executionRate": 5000,
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "Press 104",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "Dashboard",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "Asset",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/OEM},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "OEM",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/Model},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "Model",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Asset/Name},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "Name",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Availability},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Availability",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/OEE},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "OEE",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Quality},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Quality",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Line/OEE/Performance},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "Performance",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Job",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Edge/ShopFloor/WorkOrder},\r\n\u0027-1\u0027\r\n)",
+                          "dataType": "String",
+                          "name": "WorkOrder",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]../../Edge/ShopFloor/JobID},\r\n-1\r\n)",
+                          "name": "JobID",
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Asset",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "Model",
+                      "value": "F-Plus",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "AssetID",
+                      "value": "19",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "InService",
+                      "value": "2024-09-25",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "OEM",
+                      "value": "Comexi",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "dataType": "String",
+                      "name": "Name",
+                      "value": "Press 104",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Edge",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "valueSource": "memory",
+                      "name": "Infeed",
+                      "value": 3070,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "Waste",
+                      "value": 52,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "ShopFloor",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "memory",
+                          "dataType": "String",
+                          "name": "JobDS",
+                          "value": "0",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "String",
+                          "name": "WorkOrder",
+                          "value": "09252024-2",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "name": "JobID",
+                          "value": 2,
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "State",
+                      "value": 1,
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "memory",
+                      "name": "Outfeed",
+                      "value": 3018,
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "Line",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "OEE",
+                      "tagType": "Folder",
+                      "tags": [
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Performance",
+                          "value": 0.64,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "expr",
+                          "expression": "try(\r\n{[.]Availability}*{[.]Quality}*{[.]Performance},\r\n-1\r\n)",
+                          "dataType": "Float4",
+                          "name": "OEE",
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Availability",
+                          "value": 0.67,
+                          "tagType": "AtomicTag"
+                        },
+                        {
+                          "valueSource": "memory",
+                          "dataType": "Float4",
+                          "name": "Quality",
+                          "value": 0.63,
+                          "tagType": "AtomicTag"
+                        }
+                      ]
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Infeed},\r\n-1\r\n)",
+                      "name": "Infeed",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Waste},\r\n-1\r\n)",
+                      "name": "Waste",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/Outfeed},\r\n-1\r\n)",
+                      "name": "Outfeed",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "valueSource": "expr",
+                      "expression": "try(\r\n{[.]../Edge/State},\r\n-1\r\n)",
+                      "name": "State",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
