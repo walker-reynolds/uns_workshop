@@ -1,6 +1,7 @@
 # Import required Ignition libraries
 import system.tag
 import json
+import system.date
 
 # Define the parent path for the Press namespace and BigQuery namespace
 parentPath = "[default]Enterprise/Dallas/Press"
@@ -30,32 +31,32 @@ def process_press(pressPath, pressName):
 
     # Structure the data in a dictionary
     data = {
-        "timestamp": str(system.date.now()),  # Capture current timestamp
-        "Asset": {
-            "AssetID": assetTags[0].value,
-            "Name": assetTags[1].value,
-            "Model": assetTags[2].value,
-            "OEM": assetTags[3].value
-        },
-        "Dashboard": {
-            "OEE": dashboardTags[0].value,
-            "Quality": dashboardTags[1].value,
-            "Performance": dashboardTags[2].value,
-            "Availability": dashboardTags[3].value
-        },
-        "Edge": {
-            "Infeed": edgeTags[0].value,
-            "Outfeed": edgeTags[1].value,
-            "State": edgeTags[2].value,
-            "Waste": edgeTags[3].value
-        },
-        "Line": {
-            "Infeed": lineTags[0].value,
-            "Outfeed": lineTags[1].value,
-            "State": lineTags[2].value,
-            "Waste": lineTags[3].value
-        }
-    }
+	    "timestamp": system.date.format(system.date.now(), "yyyy-MM-dd HH:mm:ss"),  # Format timestamp correctly
+	    "Asset": {
+	        "AssetID": assetTags[0].value,
+	        "Name": assetTags[1].value,
+	        "Model": assetTags[2].value,
+	        "OEM": assetTags[3].value
+	    },
+	    "Dashboard": {
+	        "OEE": dashboardTags[0].value,
+	        "Quality": dashboardTags[1].value,
+	        "Performance": dashboardTags[2].value,
+	        "Availability": dashboardTags[3].value
+	    },
+	    "Edge": {
+	        "Infeed": edgeTags[0].value,
+	        "Outfeed": edgeTags[1].value,
+	        "State": edgeTags[2].value,
+	        "Waste": edgeTags[3].value
+	    },
+	    "Line": {
+	        "Infeed": lineTags[0].value,
+	        "Outfeed": lineTags[1].value,
+	        "State": lineTags[2].value,
+	        "Waste": lineTags[3].value
+	    }
+	}
 
     # Convert the structured data to a JSON string
     json_data = json.dumps(data)
