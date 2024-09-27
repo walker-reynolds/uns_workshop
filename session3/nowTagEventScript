@@ -1,0 +1,495 @@
+# This script runs on the Enterprise/{City}/Press/Now tag every 5 seconds.  It runs the simulator and publishes the press data to the BigQuery Endpoint tags
+	# Import required Ignition libraries
+	import random as py_random  # Avoid naming conflict by aliasing random
+	import system.tag
+	import system.util
+	import system.date
+	import json
+	
+	# Set the wasteSetpoint as a percentage likelihood (e.g., 0.02 = 2% chance)
+	wasteSetpoint = 0.02
+	
+	# Starting point in the tag structure (parent path)
+	parentPath = "[default]Enterprise/Dallas/Press"
+	
+	# Function to simulate tag values for a specific Edge namespace
+	def simulate_edge_values(edgePath):
+	    # Convert edgePath to string in case it is not
+	    edgePathStr = str(edgePath)
+	
+	    # Paths to the tags under the Edge namespace
+	    infeedPath = edgePathStr + "/Infeed"
+	    outfeedPath = edgePathStr + "/Outfeed"
+	    statePath = edgePathStr + "/State"
+	    wastePath = edgePathStr + "/Waste"
+	
+	    # Check if the tags exist
+	    tagPaths = [infeedPath, outfeedPath, statePath, wastePath]
+	    tagResults = system.tag.readBlocking(tagPaths)
+	
+	    # Verify that all tags are valid
+	    if all([tag.quality.isGood() for tag in tagResults]):
+	        infeedValue = tagResults[0].value
+	        outfeedValue = tagResults[1].value
+	        stateValue = tagResults[2].value
+	        wasteValue = tagResults[3].value
+	
+	        # Simulate State: 90% chance of being 1 (machine running), 10% chance of being 0 (machine stopped)
+	        stateValue = 1 if py_random.random() <= 0.9 else 0
+	
+	        # Only increment counters if the machine is running (State = 1)
+	        if stateValue == 1:
+	            # Increment Infeed
+	            infeedValue += 1
+	
+	            # Determine if Waste should increment based on the wasteSetpoint
+	            if py_random.random() <= wasteSetpoint:
+	                # Increment Waste, Outfeed will not increment
+	                wasteValue += 1
+	            else:
+	                # Increment Outfeed (but Outfeed cannot exceed Infeed)
+	                outfeedValue = min(infeedValue, outfeedValue + 1)
+	
+	        # Write the new values back to the tags
+	        system.tag.writeBlocking([
+	            infeedPath,
+	            outfeedPath,
+	            statePath,
+	            wastePath
+	        ], [
+	            infeedValue,
+	            outfeedValue,
+	            stateValue,
+	            wasteValue
+	        ])
+	
+	# Function to recursively browse tags starting from a given path and find Edge namespaces
+	def browse_for_edge_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or Edge namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_edge_namespaces(result['fullPath'])
+	        
+	        # If an 'Edge' folder is found, run the simulation for this namespace
+	        if result['name'] == 'Edge':
+	            simulate_edge_values(result['fullPath'])
+	
+	# Function to simulate OEE values and write to tags
+	def simulate_oee_values(oeePath):
+	    # Convert oeePath to string in case it is not
+	    oeePathStr = str(oeePath)
+	
+	    # Paths to the OEE tags under the OEE namespace
+	    availabilityPath = oeePathStr + "/Availability"
+	    qualityPath = oeePathStr + "/Quality"
+	    performancePath = oeePathStr + "/Performance"
+	
+	    # Generate random OEE values between 0.60 and 0.72 (rounded to 2 decimal places)
+	    availabilityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    qualityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    performanceValue = round(py_random.uniform(0.60, 0.72), 2)
+	
+	    # Write the values back to the tags
+	    system.tag.writeBlocking([availabilityPath, qualityPath, performancePath],
+	                             [availabilityValue, qualityValue, performanceValue])
+	
+	# Function to recursively browse tags starting from a given path and find OEE namespaces
+	def browse_for_oee_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or OEE namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_oee_namespaces(result['fullPath'])
+	
+	        # If an 'OEE' folder is found, run the simulation for this namespace
+	        if result['name'] == 'OEE':
+	            simulate_oee_values(result['fullPath'])
+	
+	# Browse for all 'Edge' namespaces under the specified parentPath
+	browse_for_edge_namespaces(parentPath)
+	
+	# Browse for all 'OEE' namespaces under the specified parentPath
+	browse_for_oee_namespaces(parentPath)
+	
+	
+	# Second script that runs to publish to endpoint
+	# Define the parent path for the Press namespace and BigQuery namespace
+	parentPath = "[default]Enterprise/Dallas/Press"
+	bigQueryBasePath = "[default]Enterprise/Dallas/BigQuery"
+	mqttTopicBase = "Enterprise/Dallas/BigQuery"
+	
+	# Function to structure and write data for each press
+	def process_press(pressPath, pressName):
+	    # Define the BigQuery endpoint for the specific press
+	    endPointTag = bigQueryBasePath + "/EndPoint_" + pressName
+	
+	    # Paths to the tag groups in the press namespace
+	    assetPath = pressPath + "/Asset"
+	    dashboardPath = pressPath + "/Dashboard/OEE"  # Correct path for OEE in Dashboard
+	    edgePath = pressPath + "/Edge"
+	    linePath = pressPath + "/Line"
+	
+	    # Function to read tags and capture their values
+	    def read_tags(path, tag_names):
+	        return system.tag.readBlocking([path + "/" + tag_name for tag_name in tag_names])
+	
+	    # Read all tags from each namespace
+	    assetTags = read_tags(assetPath, ["AssetID", "Name", "Model", "OEM"])
+	    dashboardTags = read_tags(dashboardPath, ["OEE", "Quality", "Performance", "Availability"])
+	    edgeTags = read_tags(edgePath, ["Infeed", "Outfeed", "State", "Waste"])
+	    lineTags = read_tags(linePath, ["Infeed", "Outfeed", "State", "Waste"])
+	
+		# In the structure part, format the timestamp using system.date.format()
+			# Import required Ignition libraries
+	import random as py_random  # Avoid naming conflict by aliasing random
+	import system.tag
+	import system.util
+	import system.date
+	import json
+	
+	# Set the wasteSetpoint as a percentage likelihood (e.g., 0.02 = 2% chance)
+	wasteSetpoint = 0.02
+	
+	# Starting point in the tag structure (parent path)
+	parentPath = "[default]Enterprise/Dallas/Press"
+	
+	# Function to simulate tag values for a specific Edge namespace
+	def simulate_edge_values(edgePath):
+	    # Convert edgePath to string in case it is not
+	    edgePathStr = str(edgePath)
+	
+	    # Paths to the tags under the Edge namespace
+	    infeedPath = edgePathStr + "/Infeed"
+	    outfeedPath = edgePathStr + "/Outfeed"
+	    statePath = edgePathStr + "/State"
+	    wastePath = edgePathStr + "/Waste"
+	
+	    # Check if the tags exist
+	    tagPaths = [infeedPath, outfeedPath, statePath, wastePath]
+	    tagResults = system.tag.readBlocking(tagPaths)
+	
+	    # Verify that all tags are valid
+	    if all([tag.quality.isGood() for tag in tagResults]):
+	        infeedValue = tagResults[0].value
+	        outfeedValue = tagResults[1].value
+	        stateValue = tagResults[2].value
+	        wasteValue = tagResults[3].value
+	
+	        # Simulate State: 90% chance of being 1 (machine running), 10% chance of being 0 (machine stopped)
+	        stateValue = 1 if py_random.random() <= 0.9 else 0
+	
+	        # Only increment counters if the machine is running (State = 1)
+	        if stateValue == 1:
+	            # Increment Infeed
+	            infeedValue += 1
+	
+	            # Determine if Waste should increment based on the wasteSetpoint
+	            if py_random.random() <= wasteSetpoint:
+	                # Increment Waste, Outfeed will not increment
+	                wasteValue += 1
+	            else:
+	                # Increment Outfeed (but Outfeed cannot exceed Infeed)
+	                outfeedValue = min(infeedValue, outfeedValue + 1)
+	
+	        # Write the new values back to the tags
+	        system.tag.writeBlocking([
+	            infeedPath,
+	            outfeedPath,
+	            statePath,
+	            wastePath
+	        ], [
+	            infeedValue,
+	            outfeedValue,
+	            stateValue,
+	            wasteValue
+	        ])
+	
+	# Function to recursively browse tags starting from a given path and find Edge namespaces
+	def browse_for_edge_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or Edge namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_edge_namespaces(result['fullPath'])
+	        
+	        # If an 'Edge' folder is found, run the simulation for this namespace
+	        if result['name'] == 'Edge':
+	            simulate_edge_values(result['fullPath'])
+	
+	# Function to simulate OEE values and write to tags
+	def simulate_oee_values(oeePath):
+	    # Convert oeePath to string in case it is not
+	    oeePathStr = str(oeePath)
+	
+	    # Paths to the OEE tags under the OEE namespace
+	    availabilityPath = oeePathStr + "/Availability"
+	    qualityPath = oeePathStr + "/Quality"
+	    performancePath = oeePathStr + "/Performance"
+	
+	    # Generate random OEE values between 0.60 and 0.72 (rounded to 2 decimal places)
+	    availabilityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    qualityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    performanceValue = round(py_random.uniform(0.60, 0.72), 2)
+	
+	    # Write the values back to the tags
+	    system.tag.writeBlocking([availabilityPath, qualityPath, performancePath],
+	                             [availabilityValue, qualityValue, performanceValue])
+	
+	# Function to recursively browse tags starting from a given path and find OEE namespaces
+	def browse_for_oee_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or OEE namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_oee_namespaces(result['fullPath'])
+	
+	        # If an 'OEE' folder is found, run the simulation for this namespace
+	        if result['name'] == 'OEE':
+	            simulate_oee_values(result['fullPath'])
+	
+	# Browse for all 'Edge' namespaces under the specified parentPath
+	browse_for_edge_namespaces(parentPath)
+	
+	# Browse for all 'OEE' namespaces under the specified parentPath
+	browse_for_oee_namespaces(parentPath)
+	
+	
+	# Second script that runs to publish to endpoint
+	# Define the parent path for the Press namespace and BigQuery namespace
+	parentPath = "[default]Enterprise/Dallas/Press"
+	bigQueryBasePath = "[default]Enterprise/Dallas/BigQuery"
+	mqttTopicBase = "Enterprise/Dallas/BigQuery"
+	
+	# Function to structure and write data for each press
+	def process_press(pressPath, pressName):
+	    # Define the BigQuery endpoint for the specific press
+	    endPointTag = bigQueryBasePath + "/EndPoint_" + pressName
+	
+	    # Paths to the tag groups in the press namespace
+	    assetPath = pressPath + "/Asset"
+	    dashboardPath = pressPath + "/Dashboard/OEE"  # Correct path for OEE in Dashboard
+	    edgePath = pressPath + "/Edge"
+	    linePath = pressPath + "/Line"
+	
+	    # Function to read tags and capture their values
+	    def read_tags(path, tag_names):
+	        return system.tag.readBlocking([path + "/" + tag_name for tag_name in tag_names])
+	
+	    # Read all tags from each namespace
+	    assetTags = read_tags(assetPath, ["AssetID", "Name", "Model", "OEM"])
+	    dashboardTags = read_tags(dashboardPath, ["OEE", "Quality", "Performance", "Availability"])
+	    edgeTags = read_tags(edgePath, ["Infeed", "Outfeed", "State", "Waste"])
+	    lineTags = read_tags(linePath, ["Infeed", "Outfeed", "State", "Waste"])
+	
+	# Import required Ignition libraries
+	import random as py_random  # Avoid naming conflict by aliasing random
+	import system.tag
+	import system.util
+	import system.date
+	import json
+	
+	# Set the wasteSetpoint as a percentage likelihood (e.g., 0.02 = 2% chance)
+	wasteSetpoint = 0.02
+	
+	# Starting point in the tag structure (parent path)
+	parentPath = "[default]Enterprise/Dallas/Press"
+	
+	# Function to simulate tag values for a specific Edge namespace
+	def simulate_edge_values(edgePath):
+	    # Convert edgePath to string in case it is not
+	    edgePathStr = str(edgePath)
+	
+	    # Paths to the tags under the Edge namespace
+	    infeedPath = edgePathStr + "/Infeed"
+	    outfeedPath = edgePathStr + "/Outfeed"
+	    statePath = edgePathStr + "/State"
+	    wastePath = edgePathStr + "/Waste"
+	
+	    # Check if the tags exist
+	    tagPaths = [infeedPath, outfeedPath, statePath, wastePath]
+	    tagResults = system.tag.readBlocking(tagPaths)
+	
+	    # Verify that all tags are valid
+	    if all([tag.quality.isGood() for tag in tagResults]):
+	        infeedValue = tagResults[0].value
+	        outfeedValue = tagResults[1].value
+	        stateValue = tagResults[2].value
+	        wasteValue = tagResults[3].value
+	
+	        # Simulate State: 90% chance of being 1 (machine running), 10% chance of being 0 (machine stopped)
+	        stateValue = 1 if py_random.random() <= 0.9 else 0
+	
+	        # Only increment counters if the machine is running (State = 1)
+	        if stateValue == 1:
+	            # Increment Infeed
+	            infeedValue += 1
+	
+	            # Determine if Waste should increment based on the wasteSetpoint
+	            if py_random.random() <= wasteSetpoint:
+	                # Increment Waste, Outfeed will not increment
+	                wasteValue += 1
+	            else:
+	                # Increment Outfeed (but Outfeed cannot exceed Infeed)
+	                outfeedValue = min(infeedValue, outfeedValue + 1)
+	
+	        # Write the new values back to the tags
+	        system.tag.writeBlocking([
+	            infeedPath,
+	            outfeedPath,
+	            statePath,
+	            wastePath
+	        ], [
+	            infeedValue,
+	            outfeedValue,
+	            stateValue,
+	            wasteValue
+	        ])
+	
+	# Function to recursively browse tags starting from a given path and find Edge namespaces
+	def browse_for_edge_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or Edge namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_edge_namespaces(result['fullPath'])
+	        
+	        # If an 'Edge' folder is found, run the simulation for this namespace
+	        if result['name'] == 'Edge':
+	            simulate_edge_values(result['fullPath'])
+	
+	# Function to simulate OEE values and write to tags
+	def simulate_oee_values(oeePath):
+	    # Convert oeePath to string in case it is not
+	    oeePathStr = str(oeePath)
+	
+	    # Paths to the OEE tags under the OEE namespace
+	    availabilityPath = oeePathStr + "/Availability"
+	    qualityPath = oeePathStr + "/Quality"
+	    performancePath = oeePathStr + "/Performance"
+	
+	    # Generate random OEE values between 0.60 and 0.72 (rounded to 2 decimal places)
+	    availabilityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    qualityValue = round(py_random.uniform(0.60, 0.72), 2)
+	    performanceValue = round(py_random.uniform(0.60, 0.72), 2)
+	
+	    # Write the values back to the tags
+	    system.tag.writeBlocking([availabilityPath, qualityPath, performancePath],
+	                             [availabilityValue, qualityValue, performanceValue])
+	
+	# Function to recursively browse tags starting from a given path and find OEE namespaces
+	def browse_for_oee_namespaces(path):
+	    # Get the direct children of the current path
+	    results = system.tag.browse(path)
+	
+	    # Iterate through the results to find folders or OEE namespaces
+	    for result in results.getResults():
+	        # If the result is a folder, browse inside it recursively
+	        if result['hasChildren']:
+	            browse_for_oee_namespaces(result['fullPath'])
+	
+	        # If an 'OEE' folder is found, run the simulation for this namespace
+	        if result['name'] == 'OEE':
+	            simulate_oee_values(result['fullPath'])
+	
+	# Browse for all 'Edge' namespaces under the specified parentPath
+	browse_for_edge_namespaces(parentPath)
+	
+	# Browse for all 'OEE' namespaces under the specified parentPath
+	browse_for_oee_namespaces(parentPath)
+	
+	
+	# Second script that runs to publish to endpoint
+	# Define the parent path for the Press namespace and BigQuery namespace
+	parentPath = "[default]Enterprise/Dallas/Press"
+	bigQueryBasePath = "[default]Enterprise/Dallas/BigQuery"
+	mqttTopicBase = "Enterprise/Dallas/BigQuery"
+	
+	# Function to structure and write data for each press
+	def process_press(pressPath, pressName):
+	    # Define the BigQuery endpoint for the specific press
+	    endPointTag = bigQueryBasePath + "/EndPoint_" + pressName
+	
+	    # Paths to the tag groups in the press namespace
+	    assetPath = pressPath + "/Asset"
+	    dashboardPath = pressPath + "/Dashboard/OEE"  # Correct path for OEE in Dashboard
+	    edgePath = pressPath + "/Edge"
+	    linePath = pressPath + "/Line"
+	
+	    # Function to read tags and capture their values
+	    def read_tags(path, tag_names):
+	        return system.tag.readBlocking([path + "/" + tag_name for tag_name in tag_names])
+	
+	    # Read all tags from each namespace
+	    assetTags = read_tags(assetPath, ["AssetID", "Name", "Model", "OEM"])
+	    dashboardTags = read_tags(dashboardPath, ["OEE", "Quality", "Performance", "Availability"])
+	    edgeTags = read_tags(edgePath, ["Infeed", "Outfeed", "State", "Waste"])
+	    lineTags = read_tags(linePath, ["Infeed", "Outfeed", "State", "Waste"])
+	
+	    # Structure the data in a dictionary
+	    data = {
+		    "timestamp": system.date.format(system.date.now(), "yyyy-MM-dd HH:mm:ss"),  # Format timestamp correctly
+		    "Asset": {
+		        "AssetID": assetTags[0].value,
+		        "Name": assetTags[1].value,
+		        "Model": assetTags[2].value,
+		        "OEM": assetTags[3].value
+		    },
+		    "Dashboard": {
+		        "OEE": dashboardTags[0].value,
+		        "Quality": dashboardTags[1].value,
+		        "Performance": dashboardTags[2].value,
+		        "Availability": dashboardTags[3].value
+		    },
+		    "Edge": {
+		        "Infeed": edgeTags[0].value,
+		        "Outfeed": edgeTags[1].value,
+		        "State": edgeTags[2].value,
+		        "Waste": edgeTags[3].value
+		    },
+		    "Line": {
+		        "Infeed": lineTags[0].value,
+		        "Outfeed": lineTags[1].value,
+		        "State": lineTags[2].value,
+		        "Waste": lineTags[3].value
+		    }
+		}
+	
+	    # Convert the structured data to a JSON string
+	    json_data = json.dumps(data)
+	
+	    # Write the structured JSON data to the specific press's BigQuery endpoint tag
+	    system.tag.writeBlocking([endPointTag], [json_data])
+	
+	    # Publish to MQTT
+	    mqtt_topic = "{}/EndPoint_{}".format(mqttTopicBase, pressName)
+	    system.cirruslink.engine.publish("EMQX", mqtt_topic, json_data.encode("utf-8"), 0, 0)
+	
+	# Function to browse and process all presses dynamically
+	def browse_and_process_presses(path):
+	    # Browse the parent path to find all presses
+	    results = system.tag.browse(path)
+	
+	    for result in results.getResults():
+	        if result['hasChildren']:
+	            pressPath = str(result['fullPath'])
+	            pressName = result['name']
+	            process_press(pressPath, pressName)
+	
+	# Browse and process all presses under the specified parentPath
+	browse_and_process_presses(parentPath)
