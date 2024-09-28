@@ -191,6 +191,11 @@ Ensure you have the following software installed before the session:
   - **MQTT Transmission Module**: Required for publishing Ignition tags to the MQTT broker.
   - **MQTT Engine Module**: Required for subscribing to MQTT topics within Ignition.
 
+---
+# Workshop Overview for Session 2
+
+All necessary code and configuration for Session 2 can be found in [Session 3 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session3).
+
 ### Required Downloads
 
 Please download and install the necessary modules for Ignition from the following links:
