@@ -205,7 +205,10 @@ The result of the local UNS should look something like this:
 
 <img width="1499" alt="image" src="https://github.com/user-attachments/assets/91976494-6d42-4b23-be8a-f89f0de3b11b">
 
-
+# Final Architecture
+<div align="center">
+  <img width="1387" alt="image" src="https://github.com/user-attachments/assets/ed643756-c5ad-486b-a106-8efc6c108a16">
+</div>
 ---
 
 ## License
