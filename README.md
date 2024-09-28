@@ -206,9 +206,12 @@ Please download and install the necessary modules for Ignition from the followin
 
 Once the required software and modules are installed, follow the steps in the workshop to create and manage your Unified Namespace in Ignition.
 
+---
 The result of the local UNS should look something like this:
 
-<img width="1499" alt="image" src="https://github.com/user-attachments/assets/91976494-6d42-4b23-be8a-f89f0de3b11b">
+<div align="center">
+  <img width="1467" alt="image" src="https://github.com/user-attachments/assets/f9e0eed1-a529-4faf-908d-3ff40df29dbe">
+</div>
 
 # Final Architecture
 <div align="center">
