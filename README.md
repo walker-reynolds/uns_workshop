@@ -183,6 +183,11 @@ The lesson is broken into several steps. Each step involves creating memory tags
    - Use **MQTT Explorer** to monitor and debug the data being published to the broker.
    - Ensure that the descriptive, functional, and informative namespaces are publishing correctly.
 
+### Data Flow and Tag to Topic Mapping
+<div align="center">
+  <img width="1538" alt="image" src="https://github.com/user-attachments/assets/44785fb5-e417-4440-bc30-0a3e10adb7a6">
+</div>
+
 ### Prerequisites For Session 2
 
 Ensure you have the following software installed before the session:
