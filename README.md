@@ -225,5 +225,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-This workshop is designed to teach students how to use Python and MQTT to create real-time, distributed systems that collect and share data in a unified namespace.
+This workshop is designed to teach students how to use Python, Ignition, Google BigQuery, Google Looker Studio Pro and MQTT to create real-time, distributed systems that collect and share data in a unified namespace.
 
