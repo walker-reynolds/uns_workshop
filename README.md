@@ -207,7 +207,7 @@ The result of the local UNS should look something like this:
 
 # Final Architecture
 <div align="center">
-  <img width="1387" alt="image" src="https://github.com/user-attachments/assets/ed643756-c5ad-486b-a106-8efc6c108a16">
+  <img width="1807" alt="image" src="https://github.com/user-attachments/assets/14110d7b-5b9f-42f3-be2c-e5f111d1838c">
 </div>
 ---
 
