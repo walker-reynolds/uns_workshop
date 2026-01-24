@@ -199,7 +199,7 @@ Ensure you have the following software installed before the session:
 ---
 # Workshop Overview for Session 3
 
-All necessary code and configuration for Session 2 can be found in [Session 3 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session3).
+All necessary code and configuration for Session 3 can be found in [Session 3 Folder](https://github.com/walker-reynolds/uns_workshop/tree/main/session3).
 
 ### Required Downloads
 
