@@ -1,6 +1,6 @@
 # Advanced UNS Workshop - Session 1
 
-Welcome to Session 1 of the Advanced Unified Namespace (UNS) Workshop. This session introduces an OpenAI-powered chatbot designed to interact with a Unified Namespace (UNS) using MQTT. Additionally, this session includes resources for restoring an Ignition gateway, tags, and projects. Below is a description of the provided files and their purpose.
+Welcome to Session 4 of the Advanced Unified Namespace (UNS) Workshop. This session introduces an OpenAI-powered chatbot designed to interact with a Unified Namespace (UNS) using MQTT. Additionally, this session includes resources for restoring an Ignition gateway, tags, and projects. Below is a description of the provided files and their purpose.
 
 ---
 
